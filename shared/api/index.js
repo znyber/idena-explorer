@@ -27,7 +27,7 @@ async function getResponse(request) {
 export async function getCoingeckoData() {
   const params = {
     ids: 'idena',
-    vs_currencies: 'usd',
+    vs_currencies: 'idr',
     include_market_cap: true,
     include_24hr_vol: true,
     include_24hr_change: true,
