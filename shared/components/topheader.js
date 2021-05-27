@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import {useEffect, useState} from 'react'
 import TooltipText from './tooltip'
-import {usdFmt, precise1, precise2} from '../utils/utils'
+import {idrFmt, precise1, precise2} from '../utils/utils'
 
 import {
   getOnlineIdentitiesCount,
@@ -26,9 +26,9 @@ export default function TopHeader() {
     async function getData() {
       const [{idena}] = await Promise.all([getCoingeckoData()])
       setMarketData({
-        price: idena && idena.usd,
-        priceChange: idena && idena.usd_24h_change,
-        marketCap: idena && idena.usd_market_cap,
+        price: idena && idena.idr,
+        priceChange: idena && idena.idr_24h_change,
+        marketCap: idena && idena.idr_market_cap,
       })
     }
     getData()
@@ -143,7 +143,7 @@ export default function TopHeader() {
           <div className="container">
             <Card
               name="iDNA price"
-              value={usdFmt(precise2(marketData.price))}
+              value={idrFmt(precise2(marketData.price))}
               change={marketData.priceChange}
               tooltip="Idena price | 24h price change https://coingecko.com"
               href="https://www.coingecko.com/en/search_redirect?id=idena&type=coin"
@@ -152,7 +152,7 @@ export default function TopHeader() {
 
             <Card
               name="Epoch mining"
-              value={usdFmt(
+              value={idrFmt(
                 precise1(
                   (marketData.price * 25920 * epochData.epochDuration) /
                     nodesData.onlineCount
@@ -166,9 +166,9 @@ export default function TopHeader() {
                 rewardsData.minRewardPaid &&
                 rewardsData.maxRewardPaid &&
                 marketData.price
-                  ? `${usdFmt(
+                  ? `${idrFmt(
                       precise1(rewardsData.minRewardPaid * marketData.price)
-                    )} - ${usdFmt(
+                    )} - ${idrFmt(
                       precise1(rewardsData.maxRewardPaid * marketData.price)
                     )}`
                   : '-'
@@ -178,7 +178,7 @@ export default function TopHeader() {
             />
             <Card
               name="Rewards paid"
-              value={usdFmt(
+              value={idrFmt(
                 Math.round(epochData.totalRewardsPaid * marketData.price)
               )}
               tooltip="Total rewards paid for last validation"
@@ -186,7 +186,7 @@ export default function TopHeader() {
             />
             <Card
               name="Market cap"
-              value={usdFmt(Math.round(marketData.marketCap))}
+              value={idrFmt(Math.round(marketData.marketCap))}
               tooltip="https://coingecko.com"
               href="https://www.coingecko.com/en/search_redirect?id=idena&type=coin"
               blank
