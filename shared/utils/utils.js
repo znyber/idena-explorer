@@ -15,7 +15,7 @@ export function dnaFmt(amount, curency = ' iDNA') {
   return `${Number(amount).toLocaleString()}${curency}`
 }
 
-export function usdFmt(amount, curency = '$') {
+export function idrFmt(amount, curency = 'Rp') {
   if (!amount || amount === 0) return '-'
   return `${curency}${Number(amount).toLocaleString()}`
 }
