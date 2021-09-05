@@ -61,6 +61,12 @@ export async function getAddressInfo(address) {
   return getResponse(apiClient().get(`address/${address}`))
 }
 
+export async function getAddressChangesSummary(address) {
+  return getResponse(
+    apiClient().get(`address/${address}/Balance/Changes/Summary`)
+  )
+}
+
 export async function getTransaction(hash) {
   return getResponse(apiClient().get(`transaction/${hash}`))
 }
@@ -263,6 +269,14 @@ export async function getEpochsDataCount() {
 
 export async function getHardForkVotingHistory(upgrade) {
   return getResponse(apiClient().get(`upgrade/${upgrade}/votinghistory`))
+}
+
+export async function getPeersHistory() {
+  return getResponse(apiClient().get(`Peers/History`))
+}
+
+export async function getMinersHistory() {
+  return getResponse(apiClient().get(`Miners/History`))
 }
 
 export async function getUpgradeVotings(limit) {

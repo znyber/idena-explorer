@@ -4,6 +4,8 @@ import '../styles/index.scss'
 import Head from 'next/head'
 import {Helmet} from 'react-helmet'
 import {ReactQueryConfigProvider} from 'react-query'
+import TagManager from 'react-gtm-module'
+import {useEffect} from 'react'
 import {SessionProvider} from '../shared/utils/session-context'
 
 const queryConfig = {
@@ -16,6 +18,10 @@ const queryConfig = {
 }
 
 export default function MyApp({Component, pageProps}) {
+  useEffect(() => {
+    TagManager.initialize({gtmId: 'GTM-P4K5GX4'})
+  }, [])
+
   return (
     <>
       <Helmet
@@ -82,6 +88,76 @@ export default function MyApp({Component, pageProps}) {
           <Component {...pageProps} />
         </SessionProvider>
       </ReactQueryConfigProvider>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="row justify-content-center text-center">
+            <div className="col-md-7 col-lg-6">
+              <div className="social_list">
+                <a
+                  href="https://medium.com/idena"
+                  rel="nofollow"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--medium" />
+                </a>
+                <a
+                  href="https://twitter.com/IdenaNetwork"
+                  rel="nofollow"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--twitter" />
+                </a>
+                <a
+                  href="https://t.me/IdenaNetworkPublic"
+                  rel="nofollow"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--telegram" />
+                </a>
+                <a
+                  href="https://github.com/idena-network"
+                  rel="nofollow"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--github" />
+                </a>
+                <a
+                  href="https://www.reddit.com/r/Idena/"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--reddit" />
+                </a>
+
+                <a
+                  href="https://discord.gg/8BusRj7"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--discord" />
+                </a>
+                <a
+                  href="mailto:info@idena.io"
+                  target="blank"
+                  className="social_list__item"
+                >
+                  <i className="icon icon--mail" />
+                </a>
+              </div>
+              <div className="donate">
+                <a target="blank" href="https://idena.io/donate">
+                  Support Idena by making a donation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
